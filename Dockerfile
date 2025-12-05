@@ -5,4 +5,4 @@ FROM lihini3/holo-backend:latest
 EXPOSE 8000
 
 # Run the start command (same as before)
-CMD ["./start.sh"]
+RUN chmod +x start.sh
