@@ -1,12 +1,11 @@
-# 1. Pull your image
-FROM lihini3/holo-backend:latest
+# 1. Pull docker image 
+FROM lihini3/holo-backend:v2
 
 # 2. Create the 'choreo' user with UID 10014 (Security Requirement)
-# (Using 'useradd' because python:slim is Debian-based)
 RUN useradd -u 10014 -m choreo
 
 # 3. Ensure permissions are correct for the new user
-# (Make sure start.sh is executable and readable)
+
 RUN chmod +x ./start.sh && \
     chown 10014 ./start.sh
 
