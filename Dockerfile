@@ -1,5 +1,5 @@
 # 1. Pull docker image 
-FROM lihini3/holo-backend:v2
+FROM lihini3/holo-backend:latest
 
 # 2. Create the 'choreo' user with UID 10014 (Security Requirement)
 RUN useradd -u 10014 -m choreo
