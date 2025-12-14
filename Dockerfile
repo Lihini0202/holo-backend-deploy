@@ -1,19 +1,17 @@
-# 1. Pull docker image 
+# 1. Pull your final image (which already has the user 'choreo' inside)
 FROM lihini3/holo-backend:final
 
-# 2. Create the 'choreo' user with UID 10014 (Security Requirement)
-RUN useradd -u 10014 -m choreo
+# 2. Switch to Root temporarily to ensure permissions
+USER root
 
-# 3. Ensure permissions are correct for the new user
+# 3. Make sure the start script is executable (Fixes potential Windows permission bugs)
+RUN chmod +x ./start.sh
 
-RUN chmod +x ./start.sh && \
-    chown 10014 ./start.sh
+# 4. Switch to the EXISTING user 'choreo' (Do NOT run useradd again)
+USER choreo
 
-# 4. Switch to the non-root user
-USER 10014
-
-# 5. Expose the port
+# 5. Open the port
 EXPOSE 8000
 
-# 6. Run the start command explicitly
+# 6. Run the app
 CMD ["./start.sh"]
